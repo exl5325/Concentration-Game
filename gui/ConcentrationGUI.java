@@ -21,17 +21,45 @@ import model.Card;
 import model.ConcentrationModel;
 
 /**
- * Created by Eric LIn on 11/3/2016.
+ * Created by Eric Lin on 11/3/2016.
+ * GUI for the Concentration game
  */
 public class ConcentrationGUI extends Application implements Observer {
+    /**
+     * The concentration game model
+     */
     private ConcentrationModel model;
+    /**
+     * The list of Buttons.
+     */
     private ArrayList<Button> buttons = new ArrayList<>();
+    /**
+     * The list of cheat buttons.
+     */
     private ArrayList<Button> cheatButtons = new ArrayList<>();
+    /**
+     * The ArrayList of cards
+     */
     private ArrayList<Card> cards;
+    /**
+     * A deep copy of the "cards" ArrayList
+     */
     private ArrayList<Card> cardsClone = new ArrayList<>();
+    /**
+     * A list of strings where each string is the directory and name for the image file
+     */
     private ArrayList<String> images = new ArrayList<>();
+    /**
+     * The label to be used to tell the user what to do
+     */
     private Label alabel = new Label("Select the first card.");
+    /**
+     * The label acting as a counter
+     */
     private final Label counter = new Label("0 Moves");
+    /**
+     * The number of cards face up
+     */
     private int cardsFaceUp = 0;
 
     public ConcentrationGUI() {
@@ -75,6 +103,10 @@ public class ConcentrationGUI extends Application implements Observer {
         primaryStage.show();
     }
 
+    /**
+     * The application initializer method.
+     * @throws Exception
+     */
     @Override
     public void init() throws Exception {
         model = new ConcentrationModel();
@@ -84,6 +116,10 @@ public class ConcentrationGUI extends Application implements Observer {
 
     }
 
+    /**
+     * The method used to make a GridPane of 4x4 buttons
+     * @return GridPane of 4x4 buttons
+     */
     private Pane makeButtonPane() {
         GridPane grid = new GridPane();
         for (int rows = 0; rows < 4; rows++) {
@@ -103,6 +139,12 @@ public class ConcentrationGUI extends Application implements Observer {
         return grid;
     }
 
+    /**
+     * The helper method used to set images to the buttons
+     * @param listOfButtons The list of buttons to set images to
+     * @param isCheat If the list of buttons to be used is the list of cheat buttons, set this to true. Otherwise, set
+     *                to false.
+     */
     private void graphics(ArrayList<Button> listOfButtons, Boolean isCheat){
         for (Button b : listOfButtons) {
             int i = listOfButtons.indexOf(b);
@@ -155,6 +197,10 @@ public class ConcentrationGUI extends Application implements Observer {
         }
     }
 
+    /**
+     * Helper method to determine the number of cards currently face up
+     * @return The number of cards current face up
+     */
     private int howManyFaceUp(){
         cardsFaceUp = 0;
         for(Card c:cards){
@@ -192,7 +238,10 @@ public class ConcentrationGUI extends Application implements Observer {
         graphics(buttons, false);
     }
 
-
+    /**
+     * Helper method to create the moves counter along with the cheat, reset, and undo buttons.
+     * @return An HBox of three buttons and a label
+     */
     private Pane makeBottomButtons() {
         HBox grid = new HBox();
         Button undo = new Button("Undo");
@@ -243,8 +292,10 @@ public class ConcentrationGUI extends Application implements Observer {
     }
 
 
-
-
+    /**
+     * The main method
+     * @param args Unused.
+     */
     public static void main(String[] args) {
         Application.launch(args);
     }
