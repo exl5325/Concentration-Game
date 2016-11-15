@@ -21,6 +21,8 @@ import model.Card;
 import model.ConcentrationModel;
 
 /**
+ * @author Eric Lin
+ * @date 11/3/2016
  * Created by Eric Lin on 11/3/2016.
  * GUI for the Concentration game
  */
